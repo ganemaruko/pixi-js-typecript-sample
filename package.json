@@ -1,0 +1,20 @@
+{
+  "name": "my-vue-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "@pixi/spine-pixi": "^1.0.8",
+    "pixi.js": "^8.1.0",
+    "vite-tsconfig-paths": "^4.3.2"
+  }
+}
