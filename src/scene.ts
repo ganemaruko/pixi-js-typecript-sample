@@ -72,4 +72,15 @@ export class Scene {
       this.platform
     );
   }
+  // Use the platform's horizontal position as the key position for the scene.
+  get positionX() {
+    return this.platform.tilePosition.x;
+  }
+
+  // Set the horizontal position of the platform layer while applying parallax scrolling to the backdrop layers.
+  set positionX(value) {
+    this.background.tilePosition.x = value * 0.1;
+    this.midGround.tilePosition.x = value * 0.25;
+    this.platform.tilePosition.x = value;
+  }
 }

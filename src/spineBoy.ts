@@ -1,7 +1,12 @@
 import { Spine } from "@pixi/spine-pixi";
 import { Container } from "pixi.js";
 
-const animationMap = {
+type Animation = {
+  name: string;
+  loop?: boolean;
+  timeScale?: number;
+};
+const animationMap: { [key: string]: Animation } = {
   idle: {
     name: "idle",
     loop: true,
@@ -73,7 +78,7 @@ export class SpineBoy {
   }
 
   // Play the spine animation.
-  playAnimation({ name, loop = false, timeScale = 1 }) {
+  playAnimation({ name, loop = false, timeScale = 1 }: Animation) {
     // Skip if the animation is already playing.
     if (this.currentAnimationName === name) return;
 
