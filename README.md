@@ -1,5 +1,8 @@
 # action-game
 
-Action gameを作りたいぜ
+## Getting Started
 
-## やりたいアイデア
+```sh
+npm install
+npm run dev
+```
