@@ -1,5 +1,6 @@
 import { Application, Assets } from "pixi.js";
 import { Controller } from "~/controller";
+import { Scene } from "~/scene";
 import { SpineBoy } from "~/spineBoy";
 
 type Animation = "idle" | "walk";
@@ -49,18 +50,20 @@ const main = async () => {
   // Create our character
   const spineBoy = new SpineBoy();
 
-  // Adjust character transformation.
+  const scene = new Scene(app.screen.width, app.screen.height);
+
+  scene.view.y = app.screen.height;
   spineBoy.view.x = app.screen.width / 2;
-  spineBoy.view.y = app.screen.height - 80;
-  spineBoy.spine.scale.set(0.5);
+  spineBoy.view.y = app.screen.height - scene.floorHeight;
+  spineBoy.spine.scale.set(scene.scale * 0.32);
 
-  // Add character to the stage.
-  app.stage.addChild(spineBoy.view);
+  app.stage.addChild(scene.view, spineBoy.view);
 
-  let currentAnimation: Animation = "idle";
+  // Trigger character's spawn animation.
+  spineBoy.spawn();
 
-  // Animate the character - just testing the controller at this point
-  app.ticker.add((time) => {
+  // Animate the character based on the controller's input.
+  app.ticker.add(() => {
     // Ignore the update loops while the character is doing the spawn animation.
     if (spineBoy.isSpawning()) return;
 
